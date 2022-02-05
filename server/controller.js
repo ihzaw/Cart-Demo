@@ -10,6 +10,26 @@ class Controller {
             next(err)
         }
     }
+
+    static async addItemToCart(req, res, next) {
+        try {
+            const { userId } = req.params
+            const { productId } = req.body
+
+            const userCart = await Cart.findOne({ where: { userId } })
+            const cartId = userCart.id
+
+            const response = await CartProduct.create({ cartId, productId: +productId })
+            console.log(response)
+            
+            res.status(201).json({
+                message: 'Added to Cart',
+                response
+            })
+        } catch (err) {
+            next(err)   
+        }
+    }
 }
 
 module.exports = Controller

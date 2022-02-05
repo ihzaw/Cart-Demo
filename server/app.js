@@ -9,7 +9,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/products', Controller.fetchProducts)
-app.get('/carts/:cartId', Controller)
+app.post('/carts/:userId', Controller.addItemToCart)
+app.delete('/carts/:userId', Controller)
 
 app.listen(port, () => {
     console.log(`running on http://localhost:${port}`)
