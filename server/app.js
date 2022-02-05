@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const cors = require('cors')
 const Controller = require('./controller')
+const errorHandler = require('./middlewares/errorHandler')
 
 app.use(cors())
 app.use(express.json())
@@ -16,6 +17,6 @@ app.delete('/carts/:userId/checkout', Controller.emptyUserCart)
 app.get('/carts/:userId', Controller.getUserCart)
 // ----------------------------
 
-app.listen(port, () => {
-    console.log(`running on http://localhost:${port}`)
-})
+app.use(errorHandler)
+
+module.exports = app

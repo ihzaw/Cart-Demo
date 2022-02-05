@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development&&nodemon app.js",
+    "dev": "SET NODE_ENV=development&&nodemon ./bin/www.js",
     "test": "SET NODE_ENV=test&&jest --watchAll --detectOpenHandles --forceExit"
   },
   "keywords": [],
