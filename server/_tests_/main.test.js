@@ -113,6 +113,28 @@ describe("POST /carts/:userId", () => {
     })
 })
 
+describe("GET /carts/:userId", () => {
+    test("success should return object with status code 200", (done) => {
+        request(app)
+        .get("/carts/1")
+        .then((response) => {
+            console.log(response.body)
+            const result = response.body
+            const entry = result[0]
+
+            expect(response.status).toBe(200)
+            expect(result).toBeInstanceOf(Array)
+            expect(entry).toBeInstanceOf(Object)
+            expect(entry).toHaveProperty("product_name")
+            expect(entry).toHaveProperty("product_description")
+            expect(entry).toHaveProperty("product_price")
+            expect(entry).toHaveProperty("product_imgUrl")
+            done()
+        })
+        .catch(err => done(err))
+    })
+})
+
 describe("DELETE /carts/:userId", () => {
     const body = {
         productId: 1
@@ -144,28 +166,6 @@ describe("DELETE /carts/:userId/checkout", () => {
             expect(response.status).toBe(200)
             expect(result).toBeInstanceOf(Object)
             expect(result).toHaveProperty("message", "Checkout complete")
-            done()
-        })
-        .catch(err => done(err))
-    })
-})
-
-describe("GET /carts/:userId", () => {
-    test("success should return object with status code 200", (done) => {
-        request(app)
-        .get("/carts/:userId")
-        .then((response) => {
-            console.log(response.body)
-            const result = response.body
-            const entry = result[0]
-
-            expect(response.status).toBe(200)
-            expect(result).toBeInstanceOf(Array)
-            expect(entry).toBeInstanceOf(Object)
-            expect(entry).toHaveProperty("product_name")
-            expect(entry).toHaveProperty("product_description")
-            expect(entry).toHaveProperty("product_price")
-            expect(entry).toHaveProperty("product_imgUrl")
             done()
         })
         .catch(err => done(err))
