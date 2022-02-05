@@ -56,13 +56,13 @@ afterAll((done) => {
             cascade: true,
         })    
     })
-    // .then(() => {
-    //     CartProduct.destroy({
-    //         truncate: true,
-    //         restartIdentity: true,
-    //         cascade: true,
-    //     })    
-    // })
+    .then(() => {
+        CartProduct.destroy({
+            truncate: true,
+            restartIdentity: true,
+            cascade: true,
+        })    
+    })
     .then(() => done())
     .catch(err => done(err))
 })
@@ -82,6 +82,33 @@ describe ("GET /products", () => {
             expect(entry).toHaveProperty("product_description")
             expect(entry).toHaveProperty("product_price")
             expect(entry).toHaveProperty("product_imgUrl")
+            done()
+        })
+        .catch(err => done(err))
+    })
+})
+
+// {
+//     message: 'Added to Cart',
+//     response
+// }
+
+describe("POST /carts/:userId", () => {
+    const body = {
+        productId: 1
+    }
+
+    test("success should return object with status code 201", (done) => {
+        request(app)
+        .post("/carts/1")
+        .send(body)
+        .then((response) => {
+            const result = response.body
+            
+            expect(response.status).toBe(201)
+            expect(result).toBeInstanceOf(Object)
+            expect(result).toHaveProperty("message", "Added to Cart")
+            expect(result).toHaveProperty("response")
             done()
         })
         .catch(err => done(err))
