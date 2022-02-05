@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }))
 app.get('/products', Controller.fetchProducts)
 app.post('/carts/:userId', Controller.addItemToCart)
 app.delete('/carts/:userId', Controller.deleteItemFromCart)
+app.delete('/carts/:userId/checkout', Controller.emptyUserCart)
 app.get('/carts/:userId', Controller.getUserCart)
 
 app.listen(port, () => {

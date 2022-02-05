@@ -67,6 +67,23 @@ class Controller {
             next(err)
         }
     }
+
+    static async emptyUserCart(req, res, next) {
+        try {
+            const { userId } = req.params
+
+            const userCart = await Cart.findOne({ where: { userId } })
+            const cartId = userCart.id
+            console.log(cartId, "<<<<<<<<<<<<<")
+            const response = await CartProduct.destroy({
+                where: { cartId },
+            })
+
+            res.status(200).json({ message: 'Checkout complete' })
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = Controller
