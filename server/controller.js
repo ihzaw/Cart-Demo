@@ -35,6 +35,7 @@ class Controller {
 
     static async deleteItemFromCart(req, res, next) {
         try {
+            console.log(req.body)
             const { userId } = req.params
             const { productId } = req.body
             if(!userId || !productId ) throw {name: 'BAD_REQUEST'}
@@ -72,7 +73,7 @@ class Controller {
             const productsInCart = cartProducts.map(cartProduct => {
                 return cartProduct.Product
             })
-            
+            // console.log(productsInCart, "<<<<<<<<<<<<<")
             res.status(200).json(productsInCart)
         } catch (err) {
             next(err)
