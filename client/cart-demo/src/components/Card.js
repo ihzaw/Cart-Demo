@@ -1,7 +1,7 @@
 import { ReactComponent as Plus } from '../assets/plus.svg';
 import { ReactComponent as Minus } from '../assets/minus.svg';
 
-export const Card = ({ product, addToCart, page }) => {
+export const Card = ({ product, addToCart, deleteSequence, page }) => {
   return (
     <div className="h-96 grid grid-rows-4 m-8 shadow-xl rounded-xl bg-white">
       <div className="row-span-3 flex justify-center items-center overflow-hidden bg-[#e8e7e5] rounded-xl">
@@ -23,7 +23,7 @@ export const Card = ({ product, addToCart, page }) => {
             </div>
           </div>
         </div>}
-        {page === 'Cart' && <div className="h-full w-1/3 flex justify-center items-center" onClick={() => addToCart(product.id)}>
+        {page === 'Cart' && <div className="h-full w-1/3 flex justify-center items-center" onClick={() => deleteSequence(product.id)}>
           <div className="w-20 h-20 p-4 justify-center flex">
             <div className="bg-red-400 hover:bg-red-500 h-full w-full rounded-full cursor-pointer flex justify-center items-center text-4xl font-bold text-white">
               <Minus fill="white" className="h-5 w-5"/>
