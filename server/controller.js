@@ -35,7 +35,6 @@ class Controller {
 
     static async deleteItemFromCart(req, res, next) {
         try {
-            console.log(req.body)
             const { userId } = req.params
             const { productId } = req.body
             if(!userId || !productId ) throw {name: 'BAD_REQUEST'}

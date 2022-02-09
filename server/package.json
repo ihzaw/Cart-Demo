@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./bin/www.js",
+    "dev": "NODE_ENV=development&&nodemon ./bin/www.js",
+    "start": "nodemon ./bin/www.js",
     "test": "jest --watchAll --detectOpenHandles --forceExit"
   },
   "keywords": [],
